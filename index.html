@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Tool Dựng Tin Nhanh</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="left-panel">
+        <h2>TÙY CHỈNH</h2>
+
+        <div class="group">
+            <h3>Chọn Logo</h3>
+            <button onclick="setLogo(1)">Logo 1</button>
+            <button onclick="setLogo(2)">Logo 2</button>
+        </div>
+
+        <div class="group">
+            <h3>Ngày tháng</h3>
+            <input type="text" id="dateInput">
+        </div>
+
+        <div class="group">
+            <h3>Tiêu đề (Dán từ Word)</h3>
+            <div id="titleInput" contenteditable="true" class="editor"></div>
+        </div>
+
+        <button class="btn-render" onclick="renderTitle()">Áp dụng & Căn chỉnh</button>
+        <button class="btn-export" onclick="exportPNG()">Xuất PNG</button>
+    </div>
+
+    <div class="right-panel">
+        <div class="preview-wrapper">
+            <div id="frame">
+
+                <img src="assets/background.png" class="bg">
+
+                <img id="logo" src="assets/logo1.png" class="logo">
+
+                <div id="dateText" class="date"></div>
+
+                <div id="titleOutput" class="title-output"></div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
