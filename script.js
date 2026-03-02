@@ -89,7 +89,7 @@ function applyFinalScale(){
 }
 
 document.getElementById("titleZoom").addEventListener("input", function(){
-    userScale = parseFloat(this.value)
+    userScale = parseFloat(this.value) || 1
     applyFinalScale()
 })
 
