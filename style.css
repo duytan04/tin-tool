@@ -100,7 +100,7 @@ button{
 /* ===== TITLE ===== */
 .title-output{
     position:absolute;
-    top:1350px;
+    top:1450px;
     left:80px;
     right:80px;
     text-align:center;
@@ -120,4 +120,5 @@ button{
 
 .title-output *{
     line-height:1.2 !important;
+
 }
