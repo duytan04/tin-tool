@@ -1,101 +1,114 @@
-window.onload = function () {
-    const today = new Date();
-    const dd = String(today.getDate()).padStart(2, "0");
-    const mm = String(today.getMonth() + 1).padStart(2, "0");
-    const yyyy = today.getFullYear();
+let baseScale = 1
+let userScale = 1
 
-    const formatted = `TIN TỨC: ${dd}/${mm}/${yyyy}`;
-    document.getElementById("dateInput").value = formatted;
-    document.getElementById("dateText").innerText = formatted;
-};
+window.onload = function () {
+    const today = new Date()
+    const dd = String(today.getDate()).padStart(2, "0")
+    const mm = String(today.getMonth() + 1).padStart(2, "0")
+    const yyyy = today.getFullYear()
+
+    const formatted = `TIN TỨC: ${dd}/${mm}/${yyyy}`
+    document.getElementById("dateInput").value = formatted
+    document.getElementById("dateText").innerText = formatted
+}
 
 document.getElementById("dateInput").addEventListener("input", function () {
-    document.getElementById("dateText").innerText = this.value.toUpperCase();
-});
+    document.getElementById("dateText").innerText = this.value.toUpperCase()
+})
 
 function setLogo(n){
-    document.getElementById("logo").src = `assets/logo${n}.png`;
+    document.getElementById("logo").src = `assets/logo${n}.png`
 }
 
 function renderTitle(){
-    const input = document.getElementById("titleInput");
-    const output = document.getElementById("titleOutput");
+    const input = document.getElementById("titleInput")
+    const output = document.getElementById("titleOutput")
 
-    output.innerHTML = input.innerHTML;
+    output.innerHTML = input.innerHTML
 
-    // Xóa tag rác Word
-    output.querySelectorAll("o\\:p").forEach(el => el.remove());
+    output.querySelectorAll("o\\:p").forEach(el => el.remove())
 
-    // Xử lý highlight
     output.querySelectorAll("*").forEach(el => {
-        const style = window.getComputedStyle(el);
+        const style = window.getComputedStyle(el)
 
         if(style.backgroundColor !== "rgba(0, 0, 0, 0)" &&
            style.backgroundColor !== "transparent"){
-            el.style.color = "yellow";
-            el.style.backgroundColor = "transparent";
+            el.style.color = "yellow"
+            el.style.backgroundColor = "transparent"
         }
 
-        el.style.fontFamily = "'UTM Avo Bold'";
-    });
+        el.style.fontFamily = "'UTM Avo Bold'"
+    })
 
-    splitLines(output);
-    scaleTitle(output);
+    splitLines(output)
+    scaleTitle(output)
 }
 
 function splitLines(container){
-    const html = container.innerHTML;
-    const lines = html.split(/<br\s*\/?>/i);
+    const html = container.innerHTML
+    const lines = html.split(/<br\s*\/?>/i)
 
-    container.innerHTML = "";
+    container.innerHTML = ""
 
     lines.forEach(line => {
         const clean = line
             .replace(/&nbsp;/g,"")
             .replace(/<p[^>]*>/gi,"")
             .replace(/<\/p>/gi,"")
-            .trim();
+            .trim()
 
         if(clean !== ""){
-            const div = document.createElement("div");
-            div.innerHTML = clean;
-            container.appendChild(div);
+            const div = document.createElement("div")
+            div.innerHTML = clean
+            container.appendChild(div)
         }
-    });
+    })
 }
 
 function scaleTitle(container){
-    const maxWidth = 1080 - 160;
-    let longestWidth = 0;
+    const maxWidth = 1080 - 160
+    let longestWidth = 0
 
     container.querySelectorAll("div").forEach(div => {
-        const width = div.scrollWidth;
+        const width = div.scrollWidth
         if(width > longestWidth){
-            longestWidth = width;
+            longestWidth = width
         }
-    });
+    })
 
-    if(longestWidth === 0) return;
+    if(longestWidth === 0) return
 
-    const ratio = maxWidth / longestWidth;
-
-    container.querySelectorAll("div").forEach(div => {
-        div.style.transform = `scale(${ratio})`;
-        div.style.transformOrigin = "center top";
-    });
+    baseScale = maxWidth / longestWidth
+    applyFinalScale()
 }
 
+function applyFinalScale(){
+    const container = document.getElementById("titleOutput")
+    const finalScale = baseScale * userScale
+    container.style.transform = `scale(${finalScale})`
+}
+
+document.getElementById("titleZoom").addEventListener("input", function(){
+    userScale = parseFloat(this.value)
+    applyFinalScale()
+})
+
+document.getElementById("lineHeightControl").addEventListener("input", function(){
+    const container = document.getElementById("titleOutput")
+    container.style.lineHeight = this.value
+})
+
 function exportPNG(){
-    const frame = document.getElementById("frame");
+    const frame = document.getElementById("frame")
 
     html2canvas(frame,{
         scale:2,
         backgroundColor:null,
         useCORS:true
     }).then(canvas=>{
-        const link = document.createElement("a");
-        link.download = `tin-nhanh-${Date.now()}.png`;
-        link.href = canvas.toDataURL("image/png");
-        link.click();
-    });
+        const link = document.createElement("a")
+        link.download = `tin-nhanh-${Date.now()}.png`
+        link.href = canvas.toDataURL("image/png")
+        link.click()
+    })
 }
