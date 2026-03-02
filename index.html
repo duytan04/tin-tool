@@ -25,18 +25,18 @@
         </div>
 
         <div class="group">
-            <h3>Zoom tiêu đề (vd: 1 = 100%, 2 = 200%)</h3>
+            <h3>Tiêu đề (Dán từ Word)</h3>
+            <div id="titleInput" contenteditable="true" class="editor"></div>
+        </div>
+
+        <div class="group">
+            <h3>Zoom tiêu đề (1 = 100%, 2 = 200%)</h3>
             <input type="number" id="titleZoom" value="1" step="0.1">
         </div>
 
         <div class="group">
-            <h3>Zoom tiêu đề</h3>
-            <input type="range" id="titleZoom" min="0.5" max="1.5" step="0.01" value="1">
-        </div>
-
-        <div class="group">
             <h3>Giãn dòng</h3>
-            <input type="range" id="lineHeightControl" min="0.8" max="2" step="0.05" value="1.2">
+            <input type="number" id="lineHeightControl" value="1.2" step="0.1">
         </div>
 
         <button class="btn-render" onclick="renderTitle()">Áp dụng & Căn chỉnh</button>
@@ -62,4 +62,3 @@
 <script src="script.js"></script>
 </body>
 </html>
-
