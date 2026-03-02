@@ -97,7 +97,7 @@ button{
 
 .title-output{
     position:absolute;
-    top:1350px;
+    top:1400px;
     left:80px;
     right:80px;
     text-align:center;
@@ -112,8 +112,4 @@ button{
     padding:0;
     display:block;
     white-space:nowrap;
-}
-
-.title-output *{
-    line-height:1.2;
 }
