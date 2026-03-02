@@ -72,7 +72,6 @@ button{
     object-fit:cover;
 }
 
-/* ===== LOGO ===== */
 .logo{
     position:absolute;
     top:80px;
@@ -83,7 +82,6 @@ button{
     transform-origin:top left;
 }
 
-/* ===== DATE ===== */
 .date{
     position:absolute;
     top:1295px;
@@ -97,39 +95,25 @@ button{
                  2px  2px 0 black;
 }
 
-/* ===== TITLE ===== */
 .title-output{
     position:absolute;
-    top:1400px;
+    top:1350px;
     left:80px;
     right:80px;
     text-align:center;
     color:white;
     font-family:'UTM Avo Bold';
     text-shadow:4px 4px 10px black;
+    transform-origin:top center;
 }
 
-/* Fix khoảng cách dòng Word */
-.title-output p,
 .title-output div{
     margin:0;
     padding:0;
-    display:inline-block;
+    display:block;
     white-space:nowrap;
 }
 
-.title-output p,
-.title-output div{
-    margin: 0 0 12px 0;   /* tạo khoảng cách giữa các dòng */
-    padding: 0;
-    display: block;       /* đổi lại block để nó xuống dòng đúng */
-}
-
 .title-output *{
-    line-height: 1.6 !important;  /* tăng độ cao dòng */
+    line-height:1.2;
 }
-
-
-
-
-
